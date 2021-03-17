@@ -3,5 +3,7 @@
 linkdir="${HOME}/bin"
 latexdir="${linkdir}/latex"
 
+mkdir -p $latexdir
+
 ln -sf ${PWD}/mdpdf ${linkdir}/
-ln -sf ${PWD}/*.latex ${latexdir}/
+ln -sf ${PWD}/latex/* ${latexdir}/

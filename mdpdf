@@ -1,41 +1,118 @@
 #!/bin/bash
 
+templates=( \
+	"plain"\ 
+	"grade|gradecomments"\
+	"lab|labmanual"\
+	"syl|syllabus"\ 
+	)
+
+options=(\
+	"-z 	add 中文 support (use xelatex, set CJKfont, etc)"\
+	"-c	force add table of contents (--toc)"\
+	)
+
+usage_message() {
+	echo -e "\nUsage: mdpdf <mdfile> [-t template] [-z] [-c]\n"
+	echo "templates:"
+	for i in "${templates[@]}"; do
+		echo "      $i"
+	done
+	echo -e "\noptions:"
+	for i in "${options[@]}"; do
+		echo "      $i"
+	done
+	echo ""
+	exit
+}
+
+if [ "$#" == 0 ] ; then usage_message ; fi
+
+infile=$1
 mdfile=""
-
-if [[ $1 == *".md"* ]]; then
-	mdfile=$1
-elif [[ $1 == *. ]]; then
-	mdfile="${1}md"
+if [[ $infile == *".md"* ]]; then
+	mdfile=$infile
+elif [[ $infile == *. ]]; then
+	mdfile="${infile}md"
 else
-	mdfile="${1}.md"
+	mdfile="${infile}.md"
 fi
-
 if [[ ! -f $mdfile ]]; then
-	echo "File $mdfile doesn't exist. You twat."
+	echo "File $mdfile doesn't exist, twat"
 	exit 1
 fi
+shift
 
 outfile="${mdfile::-2}pdf"
-
-mode=$2
-extensions=""
 template=""
+chinese=0
+toc=""
+while getopts "h:t:zc" opt; do
+	case ${opt} in 
+		h)
+			usage_message
+			;;
+		t)
+			template=$OPTARG
+			;;
+		z)
+			#chinese="--pdf-engine=xelatex -V CJKmainfont='Source Han Sans CN'"
+			chinese=1
+			;;
+		c)
+			toc="--toc"
+			;;
+		\?)	
+			echo -e "\nYou twat."
+			usage
+			;;
+	esac
+done
 
-case $mode in
-	-g|--grade)
-	extensions="--from markdown+pipe_tables"
-	template="gradecomments.latex"
-	shift
-	shift
-	;;
-	-l|--labmanual)
-	extensions="--toc --from markdown+pipe_tables"
-	template="labmanual.latex"
-	shift
-	shift
-	;;
+extensions=""
+templatesrc=""
+case $template in
+	plain)
+		extensions="--from markdown+pipe_tables"
+		templatesrc="plain.latex"
+		shift
+		shift
+		;;
+	grade|gradecomments)
+		extensions="--from markdown+pipe_tables"
+		templatesrc="gradecomments.latex"
+		shift
+		shift
+		;;
+	lab|labmanual)
+		extensions="--toc --from markdown+pipe_tables"
+		templatesrc="labmanual.latex"
+		shift
+		shift
+		;;
+	syl|syllabus)
+		extensions="--from markdown+pipe_tables"
+		templatesrc="syllabus.latex"
+		shift
+		shift
+		;;
+	*)
+		extensions="--from markdown+pipe_tables"
+		templatesrc="plain.latex"
+		shift
+		shift
+		;;
 esac
 
-pandoc $extensions $mdfile -o $outfile --template "${HOME}/bin/latex/$template"
+if [[ $chinese -eq 1 ]]; then
+	echo "Converting ${mdfile}... Template: ${templatesrc} (with 中文)..."
+	pandoc $toc --pdf-engine=xelatex -V CJKmainfont='Source Han Sans CN' \
+		$extensions $mdfile -o $outfile \
+		--template ${HOME}/bin/latex/$templatesrc
+else
+	echo  "Converting ${mdfile}... Template: ${templatesrc}..."
+	pandoc $toc $extensions $mdfile -o $outfile \
+		--template ${HOME}/bin/latex/$templatesrc
+fi
 
-#pandoc --toc --from markdown+pipe_tables $mdfile -o $outfile --template "/home/v/bin/md/tex/gradecomments.latex"
+echo "Done."

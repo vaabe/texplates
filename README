@@ -1,0 +1,13 @@
+Some templates to convert markdown to LaTeX... 
+
+usage: mdpdf <mdfile> [-t template] [-z] [-c]
+
+templates: 
+	plain
+	grade|gradecomments
+	syl|syllabus
+	lab|labmanual
+
+options:
+	-z 		add 中文 support (use xelatex, set CJKfont, etc)
+	-c 		force add table of contents (--toc)
