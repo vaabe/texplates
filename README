@@ -3,7 +3,7 @@ Some templates to convert markdown to LaTeX. With Pandoc.
 Usage: mdpdf <mdfile> [-t template] [-z] [-c]
 
 templates: 
-	plain
+	plain (default)
 	grade|gradecomments
 	syl|syllabus
 	lab|labmanual
