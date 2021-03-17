@@ -1,0 +1,7 @@
+#!/bin/bash
+
+linkdir="${HOME}/bin"
+latexdir="${linkdir}/latex"
+
+ln -sf ${PWD}/mdpdf ${linkdir}/
+ln -sf ${PWD}/*.latex ${latexdir}/

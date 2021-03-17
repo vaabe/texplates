@@ -415,6 +415,10 @@ $endif$
 \usepackage{geometry}
 \renewcommand{\familydefault}{\sfdefault}
 
+\setlength{\parindent}{1.5em}
+\setlength\LTleft\parindent
+\setlength\LTright\fill
+
 \DeclareRobustCommand{\[}{\begin{equation}}
 \DeclareRobustCommand{\]}{\end{equation}}
 

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 mdfile=""
 
@@ -17,9 +17,25 @@ fi
 
 outfile="${mdfile::-2}pdf"
 
-#pandoc --toc --pdf-engine=xelatex -V CJKmainfont="Source Han Sans CN" --from markdown+simple_tables $mdfile -o $outfile --template "/home/v/bin/md/tex/syllabus.latex"
+mode=$2
+extensions=""
+template=""
 
-#pandoc $mdfile -o $outfile --template "/home/v/bin/md/tex/syllabus.latex"
+case $mode in
+	-g|--grade)
+	extensions="--from markdown+pipe_tables"
+	template="gradecomments.latex"
+	shift
+	shift
+	;;
+	-l|--labmanual)
+	extensions="--toc --from markdown+pipe_tables"
+	template="labmanual.latex"
+	shift
+	shift
+	;;
+esac
 
+pandoc $extensions $mdfile -o $outfile --template "${HOME}/bin/latex/$template"
 
-pandoc --toc --citeproc $mdfile -o $outfile --template="/home/v/bin/md/tex/general.latex" 
+#pandoc --toc --from markdown+pipe_tables $mdfile -o $outfile --template "/home/v/bin/md/tex/gradecomments.latex"
