@@ -4,7 +4,8 @@ author: VA
 numbersections: true 
 ---
 
-`(Example "labmanual" template)` 
+Example "labmanual" template:     
+`mdpdf labmanual-resonancetube.md -t lab`
 
 # Theory
 

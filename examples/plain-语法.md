@@ -2,7 +2,7 @@
 title: 语法 
 ---
 
-`Example "plain" template with -z option (中文 support) and -c (force add toc)`
+Example "plain" template: `mdpdf plain-语法.md -z -c`
 
 ## sentence structure
 

@@ -1,6 +1,6 @@
-Some templates to convert markdown to LaTeX... 
+Some templates to convert markdown to LaTeX. With Pandoc.  
 
-usage: mdpdf <mdfile> [-t template] [-z] [-c]
+Usage: mdpdf <mdfile> [-t template] [-z] [-c]
 
 templates: 
 	plain
