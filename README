@@ -1,9 +1,8 @@
-Markdown to LaTeX with Pandoc. 
-
 Usage: mdpdf <mdfile> [-t template] [options]
 
 templates: 
 	pl|plain (default)
+	no|note
 	gr|gradecomments
 	sy|syllabus
 	la|labmanual
