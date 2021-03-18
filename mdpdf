@@ -1,10 +1,10 @@
 #!/bin/bash
 
 templates=( \
-	"plain (default)"\ 
-	"grade|gradecomments"\
-	"lab|labmanual"\
-	"syl|syllabus"\ 
+	"pl|plain (default)"\ 
+	"gr|gradecomments"\
+	"la|labmanual"\
+	"sy|syllabus"\ 
 	)
 
 options=(\
@@ -72,25 +72,25 @@ done
 extensions=""
 templatesrc=""
 case $template in
-	plain)
+	pl|plain)
 		extensions="--from markdown+pipe_tables"
 		templatesrc="plain.latex"
 		shift
 		shift
 		;;
-	grade|gradecomments)
+	gr|gradecomments)
 		extensions="--from markdown+pipe_tables"
 		templatesrc="gradecomments.latex"
 		shift
 		shift
 		;;
-	lab|labmanual)
+	la|labmanual)
 		extensions="--toc --from markdown+pipe_tables"
 		templatesrc="labmanual.latex"
 		shift
 		shift
 		;;
-	syl|syllabus)
+	sy|syllabus)
 		extensions="--from markdown+pipe_tables"
 		templatesrc="syllabus.latex"
 		shift
