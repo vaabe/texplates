@@ -1,0 +1,640 @@
+%%%% PANDOC DEFAULTS %%%%
+
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+
+\documentclass[
+]{article}
+
+
+
+\usepackage{lmodern}
+
+
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+
+  \usepackage{unicode-math}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+
+
+
+
+
+
+
+
+\fi
+
+
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+
+
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+
+\usepackage[dvipsnames]{xcolor}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+
+\urlstyle{same} % disable monospaced font for URLs
+
+
+
+
+
+
+
+
+
+\usepackage{graphicx}
+\usepackage{float}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+
+
+
+
+
+
+
+
+
+
+%%%% MAIN CONFIG %%%%
+
+\title{\textbf{Resonance Tube}}
+
+%
+\author{VA}
+
+\date{}
+
+\definecolor{MyBlue}{rgb}{0.0, 0.0, 0.75}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=MyBlue,
+	urlcolor=MyBlue
+}
+
+\urlstyle{tt}
+
+\usepackage{geometry}
+\renewcommand{\familydefault}{\sfdefault}
+
+\DeclareRobustCommand{\[}{\begin{equation}}
+\DeclareRobustCommand{\]}{\end{equation}}
+
+\begin{document}
+
+\newgeometry{
+	margin = .2cm, 
+	top = 1.8cm, 
+	bottom = 1.8cm, 
+	left = 1.6cm, 
+	right = 1.6cm
+}
+
+\renewcommand{\v}[1]{{\mathbf{#1}}}
+\newcommand{\dv}[1]{\dot{\mathbf{#1}}}
+\newcommand{\ddv}[1]{\ddot{\mathbf{#1}}}
+\newcommand{\hv}[1]{\hat{\mathbf{#1}}}
+\newcommand{\m}[1]{[ #1 ]}
+
+\newcommand{\bfit}[1]{\textbf{\textit{#1}}}
+\renewcommand{\t}[1]{\text{#1}}
+
+\renewcommand{\d}{\text{d}}
+\newcommand{\dd}[2]{\frac{\d #1}{\d #2}}
+\newcommand{\ddd}[2]{\frac{\d^2 #1}{\d #2^2}}
+\newcommand{\ddt}[1]{\frac{\d #1}{\d t}}
+\newcommand{\dddt}[1]{\frac{\d^2 #1}{\d t^2}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\grad}{\mathbf \nabla} 
+\renewcommand{\div}{\mathbf \nabla \cdot}
+\newcommand{\curl}{\mathbf \nabla \times}
+\newcommand{\lap}{\nabla^2}
+
+\newcommand{\eo}{\epsilon_0}
+\newcommand{\muo}{\mu_0}
+\newcommand{\Lag}{\mathcal L}
+\newcommand{\Ham}{\mathcal H}
+\newcommand{\degc}{^\circ \text C}
+\newcommand{\avo}{6.023 \cdot 10^{23}}
+\renewcommand{\P}{\text{P}}
+\newcommand{\p}{\text{p}}
+\newcommand{\E}{\text{E}}
+\newcommand{\e}[1]{\text{e}^{#1}}
+
+\newcommand{\bra}[1]{\langle #1 |}
+\newcommand{\ket}[1]{| #1 \rangle}
+\newcommand{\braket}[2]{\langle #1 | #2 \rangle}
+\newcommand{\adj}{^\dagger}
+\newcommand{\cj}{^*}
+\newcommand{\op}[1]{\hat{#1}}
+
+\newcommand{\bm}{\begin{bmatrix}}
+\newcommand{\ebm}{\end{bmatrix}}
+\newcommand{\bal}{\begin{aligned}}
+\newcommand{\eal}{\end{aligned}}
+\newcommand{\eq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\tl}[2]{\tag{#1} \label{#1}}
+
+\maketitle
+
+
+%%%% TABLE OF CONTENTS %%%%
+
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+
+\hfill
+
+\texttt{mdpdf\ labmanual-resonancetube.md\ -t\ la}
+
+\hypertarget{theory}{%
+\section{Theory}\label{theory}}
+
+\hypertarget{standing-waves-in-tubes-basics}{%
+\subsection{Standing waves in tubes:
+basics}\label{standing-waves-in-tubes-basics}}
+
+Here's a (very) brief summary of the theory:
+
+When sound waves travel through a finite tube, the waves get reflected
+at the ends of the tube. The incident waves interfere with the reflected
+waves, and the resulting wave pattern can be found by adding the
+displacements of the individual waves (principle of superposition).
+
+At certain frequencies, the incident waves and reflected waves interfere
+constructively, producing a wave pattern with distinct \textbf{nodes}
+(points that don't move) and \textbf{antinodes} (points of maximum
+oscillation). These are called \textbf{standing waves} (so called
+because the wave doesn't appear to be moving/propagating in any
+particular direction---it just oscillates). The frequencies that produce
+this standing wave pattern are called \textbf{resonant frequencies.}
+
+The tube's boundary conditions (i.e.~whether the tube is open or closed
+at the ends) will determine the kind of standing wave that can be
+produced. If the tube has a closed end, that end must necessarily be a
+node (since particles are fixed in place). If a tube has an open end,
+that end must be an antinode (since particles are free to oscillate).
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth,height=\textheight]{./figs/modes-diagram.jpg}
+\caption{Resonance states for open and closed tubes}
+\end{figure}
+
+The length of the tube also affects the the kind of standing waves that
+can be produced. A standing wave can only occur if a periodic
+``element'' of the wave fits perfectly inside the length of the tube. In
+a fully closed tube, there must be a node at each end in order for a
+standing wave to be observed. In a tube with one end open, there must be
+a node at the closed end and an antinode at the other. In a fully open
+tube, there must be antinodes at both ends.
+
+The simplest frequency that satisfies these requirements is called the
+fundamental harmonic. Each successive ``higher-order'' harmonic will
+have one extra set of nodes and antinodes over the previous one.
+
+\hypertarget{further-reading-references-videos}{%
+\subsection{Further reading, references,
+videos}\label{further-reading-references-videos}}
+
+Some videos:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://www.youtube.com/watch?v=gT0IqL1dyyk}{Khan Academy,
+  ``Standing Waves''}
+\item
+  \href{https://www.youtube.com/watch?v=BhQUW9s-R8M}{Khan Academy,
+  ``Standing Waves in Open Tubes''}
+\item
+  \href{https://www.youtube.com/watch?v=1S4DtuMY88I}{Khan Academy,
+  ``Standing Waves in Closed Tubes''}
+\end{itemize}
+
+Some reading material:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://openstax.org/books/university-physics-volume-1/pages/16-6-standing-waves-and-resonance}{Openstax
+  Physics, Standing Waves and Resonance}
+\item
+  \href{https://drive.google.com/drive/folders/1s5rGFl1JyXJO0UvyvqE3euCgO9LsVNT0}{Young
+  \& Freedman. University Physics, Ch 15, ``Mechanical Waves''.}
+\item
+  \href{https://www.feynmanlectures.caltech.edu/I_47.html}{Feynman
+  Lectures, Ch47, ``Sound. The wave equation''}
+\item
+  \href{https://www.feynmanlectures.caltech.edu/I_49.html}{Feynman
+  Lectures, Ch 49, ``Modes''}
+\end{itemize}
+
+\hypertarget{experiment-setup}{%
+\section{Experiment Setup}\label{experiment-setup}}
+
+\hypertarget{overview}{%
+\subsection{Overview}\label{overview}}
+
+In this lab you will examine standing sound waves in a tube with
+different boundary conditions and lengths. One end of the tube is always
+closed, and has a speaker attached to it. The other end of the tube can
+be closed with a piston which you can move back and forth to change the
+length of the tube. You can also remove the piston to create a tube with
+one end open. Below is a horizontal view of the apparatus:
+
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth,height=\textheight]{./figs/tube-fig-1.png}
+\caption{Horizontal view of resonance tube}
+\end{figure}
+
+And below is a diagram of the individual parts:
+
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth,height=\textheight]{./figs/tube-fig-2.png}
+\caption{Apparatus parts}
+\end{figure}
+
+In the first experiment, the speaker is used to to send sinusoidal sound
+waves through the tube. A small microphone in the tube detects the sound
+waves. At the resonant frequencies, the sound waves will be enhanced.
+
+In the second experiment, a pulse of sound is sent down the tube and the
+reflected pulse will be examined. The nature of the reflected pulse
+depends on whether the end of the tube is open or closed. You can use
+the observed and reflected pulses to estimate the speed of sound.
+
+\hypertarget{hardware-setup}{%
+\subsection{Hardware setup}\label{hardware-setup}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  At the speaker end of the tube, notice that there is a small
+  microphone-shaped circular hole. \textbf{Move the microphone into the
+  tube and place it at the 10 cm mark.} You may need to loosen the
+  thumbscrew to allow the microphone into the tube.
+\item
+  Notice that the lead from the microphone goes to a preamplifier which
+  has an on-off switch. \textbf{Turn this switch on.}
+\item
+  Make sure the rest of the setup is wired correctly. You should find
+  that the output of the preamplifier connects to a phone plug, which
+  then connects to a coaxial adapter, which then connects to a BNC
+  adapter, and which reaches its logical conclusion at the banana plugs
+  of a voltage sensor:
+\item
+  Connect the voltage sensor to Channel A of the Pasco 850 interface.
+\item
+  Connect the two leads of the speaker are connected to Output 1 of the
+  '850.
+\end{enumerate}
+
+\hypertarget{capstone-setup}{%
+\subsection{Capstone setup}\label{capstone-setup}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Open Capstone.
+\item
+  In the \emph{Hardware Setup} pane, click on Channel A and select
+  ``Voltage Sensor''.
+\item
+  Click on the gear icon in the bottom right to open the voltage sensor
+  properties.
+\end{enumerate}
+
+\includegraphics[width=0.6\textwidth,height=\textheight]{./figs/voltage-sensor-properties.png}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  In the voltage sensor properties window, change the sensitivity (gain)
+  from the default of 1x to 100x.
+\end{enumerate}
+
+\includegraphics[width=0.55\textwidth,height=\textheight]{./figs/change-gain.png}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  Back in the Hardware Setup pane, click on Output 1 of the '850 and
+  select ``Output Voltage - Current Sensor''
+\item
+  In the \emph{Displays} pane (on the RHS of the display), click and
+  drag the ``Scope'' icon into the center of the screen.
+\item
+  For the \(y\)-axis, under ``Select Measurements'', choose ``Output
+  Voltage Ch 01''.
+\item
+  At the top of the scope window, click the icon for ``Add new
+  \(y\)-axis'', to add the second channel. For this second \(y\)-axis
+  (which should appear on the RHS), choose ``Voltage, Ch A''.
+\end{enumerate}
+
+\includegraphics[width=1\textwidth,height=\textheight]{./figs/setting-up-scope.png}
+
+The Capstone oscillscope should now be configured. When you hit
+``Monitor'' you should see two traces appear on the scope. The voltage
+of the signal generator (the signal being emitted from the speaker)
+should be on the first channel, and the voltage from the voltage sensor
+(the signal that's being detected by the mic) should be on the second
+channel.
+
+\hypertarget{features-of-the-capstone-scope}{%
+\subsection{Features of the Capstone
+scope}\label{features-of-the-capstone-scope}}
+
+The Capstone oscilloscope is designed to display the waveform of the
+sound waves. The \(x\)-axis is time, and the \(y\)-axis is voltage
+output.
+
+The image below indicates some (useful) features of the Capstone
+oscilloscope:
+
+\includegraphics[width=1\textwidth,height=\textheight]{./figs/the-capstone-scope.png}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{A.} click and drag the \(y\)-axis in the vertical direction to
+  change the scale
+\item
+  \textbf{B.} moves the scope trace up or down on the screen
+\item
+  \textbf{C.} click and drag the \(x\)-axis in the horizontal direction
+  to stretch or compress the trace
+\item
+  \textbf{D.} selects the ``smart tool'' function
+\item
+  \textbf{E, F.} the trigger. This is used to make the scope trace
+  appear static on the screen. In particular, if you notice the trace is
+  ``moving'' across the screen, hit the trigger button. Move the arrow
+  (marked \textbf{F}) up or down to freeze the trace, and/or adjust the
+  trigger level (the value at which the sweep will start the signal).
+\item
+  \textbf{G.} adjust the \(y\)-axis to fit the data. This is useful to
+  see the full amplitude of multiple waveforms.
+\end{itemize}
+
+\hypertarget{experiment-1-measuring-wavelength}{%
+\section{Experiment 1: Measuring
+Wavelength}\label{experiment-1-measuring-wavelength}}
+
+\hypertarget{overview-1}{%
+\subsection{Overview}\label{overview-1}}
+
+In this experiment you will attempt to measure the wavelength of the
+standing sound wave in the tube. You will do this by changing the
+position of the piston (i.e.~altering the length of the tube) and noting
+the positions that correspond to resonant frequencies.
+
+\hypertarget{setup-procedures}{%
+\subsection{Setup procedures}\label{setup-procedures}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Go to the \emph{Signal Generator} pane (on the LHS) and click on ``850
+  Output 1''. Under the ``Waveform'' dropdown, select ``sine wave''. Set
+  the frequency to 650 Hz and the amplitude to 1.1 V. And click the
+  button marked ``Auto''.
+\end{enumerate}
+
+\includegraphics[width=0.5\textwidth,height=\textheight]{./figs/configure-signal-generator.png}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  At the bottom of the screen, select ``Fast Monitor Mode''.
+\end{enumerate}
+
+\includegraphics[width=0.25\textwidth,height=\textheight]{./figs/fast-monitor-mode.png}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Adjust the trigger arrow and move it slightly above 0.2 V. Then
+  ``click on adjust the y axis scale''.
+\end{enumerate}
+
+\hypertarget{experiment-procedures}{%
+\subsection{Experiment procedures}\label{experiment-procedures}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  First, move the piston into the tube, until it's positioned near the
+  mic.
+\item
+  Then gradually pull the piston outwards, (i.e.~increasing the
+  effective length of the tube).
+\item
+  As you do, watch how the waveform changes on Capstone. Find the
+  positions of the piston that give the maximum signal from the
+  microphone. Make note of these positions. These are the positions that
+  correspond to resonant frequencies.
+\item
+  Note that successive piston positions are half a wavelength apart.
+  Determine the wavelength \(\lambda\) using your data.
+\item
+  Compare the experimental value of \(\lambda\) to the theoretical one,
+  which is given by \(\lambda f = v\).
+\item
+  Repeat the above procedures for signal frequencies of 900 Hz and 1300
+  Hz. Do the same analysis. How does the wavelength change when you
+  increase or decrease the frequency? Explain your results.
+\end{enumerate}
+
+\hypertarget{experiment-2-pulsed-waves}{%
+\section{Experiment 2: Pulsed Waves}\label{experiment-2-pulsed-waves}}
+
+\hypertarget{overview-2}{%
+\subsection{Overview}\label{overview-2}}
+
+In this experiment, short pulses will be sent down the tube from the
+speaker. This is achieved by driving the speaker with a relatively low
+frequency of 8 Hz. The will cause the speaker cone to move very quickly
+one way and then stop, which sends a short compression or rarefraction
+pulse down the tube. This pulse will reflect from the end of the tube
+and propagates back towards the speaker. It will then bounce off the
+speaker end of the tube, and continue to go back and forth along the
+tube until it's damped. The period of the square wave is chosen to be
+long enough so that the pulse is completely dissipated before the
+speaker cone moves the other way in response to the square wave, and
+sends the next pulse down the tube. The pulses alternate between
+compressions and rarefractions.
+
+\hypertarget{procedures}{%
+\subsection{Procedures}\label{procedures}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Configure the signal generator for an 8 Hz positive square wave with
+  an amplitude of 3 V.
+\item
+  Loosen the thumbscrew holding the microphone, and place the microphone
+  in the tube at the 10 cm mark.
+\item
+  Move the piston out to 80 cm. Use the speaker stand to support the
+  tube.
+\item
+  Make sure Capstone is set to ``Fast monitor mode''.
+\item
+  Next, you'll want to adjust the scope to obtain the initial pulse and
+  the reflected pulse. There are two possible ways you can do this:
+
+  \textbf{Method 1:}
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    Make sure you've clicked on the trigger button and adjusted the
+    trigger arrow to be slightly positive (just as in experiment 1).
+  \item
+    Click ``Monitor''.
+  \item
+    Click on ``adjust \(y\)-axis scale to fit data'' (top left). You
+    should see an image similar the one below. The region highlighted in
+    green is the initial pulse and the region highlighted in blue is the
+    reflected pulse.
+
+    \includegraphics[width=0.8\textwidth,height=\textheight]{./figs/method-1.png}
+  \end{enumerate}
+
+  \textbf{Method 2:}
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    Adjust the \(x\)-axis (by dragging it horizontally) so the scope
+    pattern looks like the one in the image below. There should be about
+    0.05 s/div.
+
+    \includegraphics[width=0.8\textwidth,height=\textheight]{./figs/method-2.png}
+  \item
+    On the scope click on the \(x\)-axis variable (time) and adjust the
+    time division to approximately 1 ms/div, so that the trace looks
+    like the image below:
+
+    \includegraphics[width=0.8\textwidth,height=\textheight]{./figs/method-2a.png}
+  \end{enumerate}
+\end{enumerate}
+
+\hypertarget{determining-the-speed-of-sound}{%
+\subsection{Determining the speed of
+sound}\label{determining-the-speed-of-sound}}
+
+By using the displacement between the microphone and piston, and
+determining the time between the initial pulse and the reflected pulse,
+you can determine the speed of sound. Use the \emph{Delta Tool}
+(Capstone) to find the time between pulses:
+
+\includegraphics[width=0.4\textwidth,height=\textheight]{./figs/delta-tool.png}
+
+You may want to increase the number of decimal places to obtain a
+precise value for the time between pulses. In the \emph{Tools} column,
+click on ``Data Summary'', go to ``clock'', and click on the gear icon.
+A properties window will show up:
+
+\includegraphics[width=0.6\textwidth,height=\textheight]{./figs/data-summary.png}
+
+With the scope running, slowly move the piston towards the speaker. What
+is occurring to the signal on the scope? Explain.
+
+\hypertarget{changing-the-boundary-conditions}{%
+\subsection{Changing the boundary
+conditions}\label{changing-the-boundary-conditions}}
+
+In a resonance tube, the nature of the reflected pulse depends on the
+boundary conditions. If the end of the tube is open, it becomes a
+pressure node, which causes the pressure of the reflected pulse to
+invert, and cancel out the pressure of the initial pulse.
+
+If the end of the tube is closed (as in experiment 1), the boundary is a
+displacement node and a pressure antinode, so the pressure of the
+reflected pulse is not inverted.
+
+Remove the piston from the tube and support the end of the tube with the
+stand. The tube should now have one end open. Hit ``Monitor'' and
+observe the reflected pulse.
+
+Now close the end of the tube with the rubber stopper and note how the
+reflected pulse changes. Discuss what you see.
+
+
+\end{document}

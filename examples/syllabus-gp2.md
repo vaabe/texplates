@@ -3,7 +3,7 @@ title: "Syllabus: GP2 Lab"
 subtitle: "Spring 2021"
 ---
 
-Example "syllabus" template: `mdpdf syllabus-gp2.md -t syl`
+`mdpdf syllabus-gp2.md -t sy`
 
 # Info
 

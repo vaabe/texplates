@@ -2,7 +2,7 @@
 title: "Lab Report Tips"
 ---
 
-Example "plain" template: `mdpdf plain-reporttips.md`
+`mdpdf plain-reporttips.md`
 
 # Stuff I Generally Look For
 

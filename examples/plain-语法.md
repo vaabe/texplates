@@ -2,7 +2,7 @@
 title: 语法 
 ---
 
-Example "plain" template: `mdpdf plain-语法.md -z -c`
+`mdpdf plain-语法.md -z -c`
 
 ## sentence structure
 

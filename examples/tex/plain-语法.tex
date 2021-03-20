@@ -1,0 +1,881 @@
+%%%% PANDOC DEFAULTS %%%%
+
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{space}{xeCJK}
+%
+
+\documentclass[
+]{article}
+
+
+
+\usepackage{lmodern}
+
+
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+
+  \usepackage{unicode-math}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+
+
+
+
+
+  \ifxetex
+    \usepackage{xeCJK}
+    \setCJKmainfont[]{Source Han Sans CN}
+  \fi
+
+
+  \ifluatex
+    \usepackage[]{luatexja-fontspec}
+    \setmainjfont[]{Source Han Sans CN}
+  \fi
+
+\fi
+
+
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+
+
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+
+\usepackage[dvipsnames]{xcolor}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+
+\urlstyle{same} % disable monospaced font for URLs
+
+
+
+
+
+
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+
+
+
+
+
+
+
+
+
+%%%% MAIN CONFIG %%%%
+
+% title
+\title{\textbf{语法}}
+
+% subtitle
+
+% author
+
+% date
+\date{}
+
+% colors
+\definecolor{MyBlue}{rgb}{0.0, 0.0, 0.75}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=MyBlue,
+	urlcolor=MyBlue
+}
+
+% urlstyle
+\urlstyle{tt}
+
+% fonts
+\usepackage{geometry}
+\renewcommand{\familydefault}{\sfdefault}
+
+\DeclareRobustCommand{\[}{\begin{equation}}
+\DeclareRobustCommand{\]}{\end{equation}}
+
+\begin{document}
+
+% page margins
+\newgeometry{
+	margin = .2cm, 
+	top = 2.0cm, 
+	bottom = 2.0cm, 
+	left = 2.0cm, 
+	right = 2.0cm
+}
+
+\renewcommand{\v}[1]{{\mathbf{#1}}}
+\newcommand{\dv}[1]{\dot{\mathbf{#1}}}
+\newcommand{\ddv}[1]{\ddot{\mathbf{#1}}}
+\newcommand{\hv}[1]{\hat{\mathbf{#1}}}
+\newcommand{\m}[1]{[ #1 ]}
+
+\newcommand{\bfit}[1]{\textbf{\textit{#1}}}
+\renewcommand{\t}[1]{\text{#1}}
+
+\renewcommand{\d}{\text{d}}
+\newcommand{\dd}[2]{\frac{\d #1}{\d #2}}
+\newcommand{\ddd}[2]{\frac{\d^2 #1}{\d #2^2}}
+\newcommand{\ddt}[1]{\frac{\d #1}{\d t}}
+\newcommand{\dddt}[1]{\frac{\d^2 #1}{\d t^2}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\grad}{\mathbf \nabla} 
+\renewcommand{\div}{\mathbf \nabla \cdot}
+\newcommand{\curl}{\mathbf \nabla \times}
+\newcommand{\lap}{\nabla^2}
+
+\newcommand{\eo}{\epsilon_0}
+\newcommand{\muo}{\mu_0}
+\newcommand{\Lag}{\mathcal L}
+\newcommand{\Ham}{\mathcal H}
+\newcommand{\degc}{^\circ \text C}
+\newcommand{\avo}{6.023 \cdot 10^{23}}
+\renewcommand{\P}{\text{P}}
+\newcommand{\p}{\text{p}}
+\newcommand{\E}{\text{E}}
+\newcommand{\e}[1]{\text{e}^{#1}}
+
+\newcommand{\bra}[1]{\langle #1 |}
+\newcommand{\ket}[1]{| #1 \rangle}
+\newcommand{\braket}[2]{\langle #1 | #2 \rangle}
+\newcommand{\adj}{^\dagger}
+\newcommand{\cj}{^*}
+\newcommand{\op}[1]{\hat{#1}}
+
+\newcommand{\bm}{\begin{bmatrix}}
+\newcommand{\ebm}{\end{bmatrix}}
+\newcommand{\bal}{\begin{aligned}}
+\newcommand{\eal}{\end{aligned}}
+\newcommand{\eq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\tl}[2]{\tag{#1} \label{#1}}
+
+\maketitle
+
+
+%%%% TABLE OF CONTENTS %%%%
+
+
+\hfill
+
+\texttt{mdpdf\ plain-语法.md\ -z\ -c}
+
+\hypertarget{sentence-structure}{%
+\subsection{sentence structure}\label{sentence-structure}}
+
+\begin{itemize}
+\item
+  chinese is SVO, with some notable exceptions {[}just as in english{]}
+\item
+  \textbf{topicalisation:} whereby you start a sentence with the topic
+  (``given'' or ``old'' information) and end with the comment (``new''
+  information)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    in this structure a DO or IDO can be moved to the front of the
+    sentence
+  \item
+    中国菜怎么做？ -\textgreater{} Zhōngguó cài zěnme zuò?
+    -\textgreater{} {[}chinese food{]} how make -\textgreater{} how do
+    you cook chinese food?
+  \end{itemize}
+\item
+  \textbf{ergative structure/locative inversion:} where S is moved to O
+  position and the empty S position is filled with a locative expression
+
+  \begin{itemize}
+  \tightlist
+  \item
+    ``XVS'' structure, where X is a locative expression
+  \item
+    杯子下有手机 -\textgreater{} cup-under {[}has{]} phone
+    -\textgreater{} under the cup has phone {[}as opposed to ``phone is
+    under the cup''{]}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{copula}{%
+\subsection{copula}\label{copula}}
+
+\begin{itemize}
+\item
+  是 -\textgreater{} to be / is
+\item
+  a copula is a word that links the subject to the subject complement:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    the cup \emph{is} under the chair
+  \item
+    the noun phrase ``the cup'' is the subject, the verb ``is'' is the
+    copula, the locative expression ``under the chair'' is the
+    predicative expression
+  \end{itemize}
+\item
+  是 for connecting nouns
+
+  \begin{itemize}
+  \tightlist
+  \item
+    in chinese 是 is only used to ``connect'' nouns, i.e.~Noun 1 是 Noun
+    2 -\textgreater{} Noun 1 \emph{is} Noun 2
+  \item
+    我是你 -\textgreater{} I am you
+  \item
+    是 is not used to connect a noun and an adjective, e.g.~you can't
+    say {[}he{]} 是 {[}fast{]} for he \emph{is} fast. in thise case you
+    need the linking word 很, hěn
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{ux6709-the-existential-phrase}{%
+\subsection{有, the existential
+phrase}\label{ux6709-the-existential-phrase}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{有 / yǒu} -\textgreater{} ``has'' / ``there
+  is/exists/contains''
+
+  \begin{itemize}
+  \tightlist
+  \item
+    有 can be used to express existence
+  \item
+    to express a place ``has'' a thing, or that the thing is in the
+    place
+  \item
+    structure: {[}X{]} {[}有{]} {[}O{]}
+  \item
+    我家有很多小狗 -\textgreater{} wǒ jiā yǒu hěn dūo xiǎo gǒu
+    -\textgreater{} {[}my house{]} {[}has{]} very many {[}puppy{]}
+    -\textgreater{} there are many puppies in my house
+  \item
+    日本有很多中国人 -\textgreater{} Rìběn yǒu hěn dūo Zhōngguórén
+    -\textgreater{} japan {[}has{]} very many chinese people
+    -\textgreater{} there are many chinese people in japan
+  \item
+    这里有一个问题 -\textgreater{} zhèlǐ yǒu yī gè wèntí -\textgreater{}
+    here {[}has{]} a problem -\textgreater{} there is a problem here
+  \end{itemize}
+\item
+  有 can also be used to express possession ``to have''
+
+  \begin{itemize}
+  \tightlist
+  \item
+    我有杯子 -\textgreater{} I have a cup
+  \item
+    你有房子马？ -\textgreater{} you have a house?
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{negation}{%
+\subsection{negation}\label{negation}}
+
+\begin{itemize}
+\tightlist
+\item
+  can negate a verb by placing 不 before it:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    我不是你 -\textgreater{} I am not you
+  \item
+    她没有杯子 -\textgreater{} she doesn't have a cup
+  \item
+    note 有 cannot be negated with 不
+  \end{itemize}
+\item
+  can use 没有 + {[}verb{]} to indicate an action didn't happen in the
+  past
+
+  \begin{itemize}
+  \tightlist
+  \item
+    我没有说汉语 -\textgreater{} I didn't speak chinese
+  \item
+    我没有在说汉语 -\textgreater{} I wasn't speaking chinese
+  \end{itemize}
+\item
+  using 了 to represent not anymore
+
+  \begin{itemize}
+  \tightlist
+  \item
+    structure: {[}bù{]} {[}verb phrase{]} {[}le{]}
+  \item
+    here you're using 了 to represent a change in state
+  \item
+    我不想吃了 -\textgreater{} I don't want to eat anymore
+  \item
+    你不喜欢我了马？ -\textgreater{} you don't like me anymore?
+  \item
+    手机没电了 -\textgreater{} phone ran out of power
+  \end{itemize}
+\item
+  \textbf{已经 / yǐjīng -\textgreater{} anymore}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    is optional. add for emphasis.
+  \item
+    我已经不住这里了 -\textgreater{} I {[}anymore{]} don't live here
+    -\textgreater{} I don't live here anymore
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{questions}{%
+\subsection{questions}\label{questions}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{马 / ma} -\textgreater{} question particle
+
+  \begin{itemize}
+  \tightlist
+  \item
+    place at end of the sentence
+  \item
+    你喜欢它马？ -\textgreater{} do you like it?
+  \end{itemize}
+\item
+  \textbf{呢 / ne -\textgreater{} question particle}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    used to ask reciprocal questions or simple questions like ``what/how
+    about\ldots?''
+  \item
+    你好马？我很好。你呢？ -\textgreater{} are you good? I'm very good.
+    how about you?
+  \item
+    这个很好。那个呢？ -\textgreater{} this one is very good. what about
+    that one?
+  \item
+    我在家。你呢？ -\textgreater{} I'm at home. what about you?
+  \end{itemize}
+\item
+  \textbf{using 不 to ask questions by negation}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    structure: {[}V{]} 不 {[}V{]}
+  \item
+    他是不是你爸爸? -\textgreater{} he is {[}not is{]} your father? (is
+    he your father?)
+  \item
+    爸爸在不在家? -\textgreater{} father at home? {[}is the same as
+    asking 爸爸在家马？{]}
+  \item
+    你喜不喜欢它？-\textgreater{} do you like it or not?
+  \end{itemize}
+\item
+  \textbf{using 没有 to ask questions by negation}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    structure: 有没有
+  \item
+    这里有没有人？ -\textgreater{} here has {[}doesn't have{]} people?
+    (is anyone here?)
+  \item
+    有没有人在家？ -\textgreater{} have {[}doesn't have{]} people
+    {[}at{]} home? (is anyone home) -\textgreater{} {[}V{]} {[}S{]}
+    {[}pp{]}
+  \item
+    那儿有没有我那两个朋友？ -\textgreater{} there has {[}doesn't
+    have{]} I this two friends (are those two friends of mine there?)
+  \item
+    他们是不是都不在家？ -\textgreater{} they are {[}not are{]} all not
+    at home? (are they all not at home?)
+  \end{itemize}
+\item
+  \textbf{asking questions about completed actions with 了马}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    你吃饭了马？ -\textgreater{} did you eat?
+  \end{itemize}
+\item
+  \textbf{asking ``what'' with 什么}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    structure: {[}S{]} {[}V{]} {[}什么{]} {[}noun{]}
+  \item
+    你喜欢吃什么菜？ -\textgreater{} nǐ xǐhuan chī shénme cài
+    -\textgreater{} you like to eat what food -\textgreater{} what food
+    do you like to eat?
+  \item
+    你用什么手机？ -\textgreater{} you use what phone? -\textgreater{}
+    what phone do you use?
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{possession}{%
+\subsection{possession}\label{possession}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{的 / de -\textgreater{} possessive particle}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    我的朋友 -\textgreater{} I {[}de{]} friend -\textgreater{} my friend
+  \end{itemize}
+\item
+  \textbf{的 can be dropped if:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    close relationships are involved
+  \item
+    institutional relationship is involved {[}school, work{]}
+  \item
+    我家很大 -\textgreater{} my house is very big
+  \item
+    这是我女朋友 -\textgreater{} this is my girlfriend
+  \item
+    这是我妈妈 -\textgreater{} zhè shì wǒ māma -\textgreater{} this is
+    my mother
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{prepositional-phrases}{%
+\subsection{prepositional phrases}\label{prepositional-phrases}}
+
+\begin{itemize}
+\item
+  use 在 to indicate the location that a verb takes place in
+
+  \begin{itemize}
+  \tightlist
+  \item
+    structure: {[}S{]} {[}在{]} {[}X{]} {[}V{]} {[}O{]}
+  \item
+    slightly unusual structure {[}coming from english{]}
+  \end{itemize}
+\item
+  \textbf{examples:}
+\item
+  她在那儿没有家人
+
+  \begin{itemize}
+  \tightlist
+  \item
+    tā zài nǎr méiyǒu jiārén -\textgreater{} she {[}at{]} there {[}has
+    not{]} family -\textgreater{} she has no family there
+  \item
+    {[}S{]} {[}在{]} {[}X{]} {[}V{]} {[}O{]} (preserves SVO structure)
+  \end{itemize}
+\item
+  我在英国没有手机
+
+  \begin{itemize}
+  \tightlist
+  \item
+    I {[}at England{]} don't have phone
+  \item
+    {[}S{]} {[}在{]} {[}X{]} {[}V{]} {[}DO{]}
+  \end{itemize}
+\item
+  我在伦敦的朋又不叫Shinzo
+
+  \begin{itemize}
+  \tightlist
+  \item
+    I {[}at London{]} {[}my friend{]} not called Shinzo -\textgreater{}
+    my friend in London isn't called Shinzo
+  \item
+    my friend in london -\textgreater{} 我在伦敦的朋又
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{relative-locations-in-under-above-beside-etc}{%
+\subsection{relative locations {[}in, under, above, beside,
+etc{]}}\label{relative-locations-in-under-above-beside-etc}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{在 with ``big'' locations}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    structure: 在 {[}X{]}
+  \item
+    在中国 -\textgreater{} in China
+  \item
+    在纽约 -\textgreater{} in New York
+  \end{itemize}
+\item
+  \textbf{在 + ``preposition'' for relative locations}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    structure: 在 {[}location{]} {[}下/上/里/\ldots{]}
+  \item
+    在桌子上 -\textgreater{} zài zhuōzi shàng -\textgreater{} on the
+    table
+  \item
+    商店在我家旁边 -\textgreater{} shāngdiàn zài wǒ jiā pángbiān
+    -\textgreater{} the shop is next to my house
+  \end{itemize}
+\item
+  \textbf{在 + occasions}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    structure: 在 {[}occasion{]} {[}上{]}
+  \item
+    我在派对上-\textgreater{} wǒ zài pàiduì shàng -\textgreater{} I'm at
+    the party
+  \item
+    我在课上 -\textgreater{} I'm in class
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{relative-clauses-and-pronouns}{%
+\subsection{relative clauses and
+pronouns}\label{relative-clauses-and-pronouns}}
+
+\begin{itemize}
+\tightlist
+\item
+  if the relative clause has an object but no subject:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    the object is the implied subject of the relative clause:
+  \item
+    学汉语的美国人 -\textgreater{} learn chinese {[}de{]} american
+    -\textgreater{} the american \emph{who} learns chinese
+  \end{itemize}
+\item
+  if the relative clause has a subject but no object:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    the subject is the implied object of the relative clause:
+  \item
+    他说的英国 -\textgreater{} he speaks {[}de{]} chinese
+    -\textgreater{} the chinese \emph{that} he speaks
+  \end{itemize}
+\item
+  if the relative clause has both a subject and an object:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    the direct object is the object of the relative clause
+  \item
+    我学汉语的美国人 -\textgreater{} I learn chinese {[}de{]} american
+    -\textgreater{} I am an american who leans chinese
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{temporal}{%
+\subsection{temporal}\label{temporal}}
+
+\begin{itemize}
+\item
+  time words either go at the beginning of the sentence or directly
+  after the subject
+
+  \begin{itemize}
+  \tightlist
+  \item
+    {[}time word{]} {[}S{]} {[}V{]} {[}O{]} -\textgreater{}
+    昨天我去了酒吧 -\textgreater{} yesterday I went to the bar
+  \item
+    {[}S{]} {[}time word{]} {[}V{]} {[}O{]} -\textgreater{}
+    我昨天去了酒吧 -\textgreater{} I went to the bar yesterday
+  \end{itemize}
+\item
+  \textbf{以后 / yǐhòu -\textgreater{} after a specific time}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    下午三点以后，我不在家 -\textgreater{} 3pm {[}after{]}, I will not
+    be at home
+  \item
+    来中国以后，她认识了她的朋友 -\textgreater{} come china {[}after{]},
+    she met her friend
+  \end{itemize}
+\item
+  \textbf{以前 / yǐqián -\textgreater{} before a specific time}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    吃饭以前，你洗手了马？ -\textgreater{} eat {[}before{]}, you washed
+    hand?
+  \item
+    睡觉以前，不要吃东西 -\textgreater{} sleep {[}before{]}, don't eat
+    anything
+  \end{itemize}
+\item
+  \textbf{现在 / xiànzài -\textgreater{} now}
+\item
+  \textbf{了 / le -\textgreater{} now}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    in some common expressions 了 is used instead of 现在 to mean
+    ``now''
+  \item
+    same pattern as the ``change in state'' usage of 了
+  \item
+    懂了 -\textgreater{} now I understand
+  \item
+    吃饭了! -\textgreater{} eat now! / time to eat!
+  \item
+    知道了 -\textgreater{} I understand now / got it / I see
+  \item
+    她来了 -\textgreater{} she's coming now
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{please-polite-requests}{%
+\subsection{please / polite requests}\label{please-polite-requests}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{请 / qǐng} -\textgreater{} please
+
+  \begin{itemize}
+  \tightlist
+  \item
+    structure: {[}请{]} {[}V{]}
+  \item
+    请进 -\textgreater{} qǐng jìn -\textgreater{} please come in
+  \item
+    请说 -\textgreater{} qǐng shuō -\textgreater{} please speak
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{excessively-with-ux592a-and-ux4e86}{%
+\subsection{excessively with 太 and
+了}\label{excessively-with-ux592a-and-ux4e86}}
+
+\begin{itemize}
+\tightlist
+\item
+  can express something is too much with 太 and 了
+
+  \begin{itemize}
+  \tightlist
+  \item
+    structure: {[}太{]} {[}adj{]} {[}了{]}
+  \item
+    米饭太多了 -\textgreater{} mǐfàn tài duō le -\textgreater{} there is
+    too much rice
+  \item
+    你太好了 -\textgreater{} nǐ tài hào le -\textgreater{} you are too
+    good / you are so good
+  \item
+    seems you can use 太 in place of 很
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{ux90fd---all}{%
+\subsection{都 -\textgreater{} all}\label{ux90fd---all}}
+
+\begin{itemize}
+\tightlist
+\item
+  你们都认识Shinzo马？ -\textgreater{} you all know Shinzo?
+\item
+  明天我们都可以去 -\textgreater{} tomorrow we all can go
+\item
+  我们都要冰水 -\textgreater{} we all want ice water
+\end{itemize}
+
+\hypertarget{ux4e5f---alsotoo}{%
+\subsection{也 -\textgreater{} also/too}\label{ux4e5f---alsotoo}}
+
+\begin{itemize}
+\item
+  structure: {[}S{]} {[}也{]} {[}V{]}
+\item
+  我也喜欢 -\textgreater{} I also like it
+\item
+  她也有一个儿子 -\textgreater{} she also has a son
+\item
+  她也有一个女儿 -\textgreater{} she also has a daughter
+\end{itemize}
+
+\hypertarget{ux591a---how-much}{%
+\subsection{多 -\textgreater{} how {[}much{]}}\label{ux591a---how-much}}
+
+\begin{itemize}
+\item
+  多 -\textgreater{} how much. used for asking about the degree/extent
+  of something
+\item
+  她多高？-\textgreater{} she {[}how much{]} tall? -\textgreater{} how
+  tall is she?
+\item
+  你家多大？-\textgreater{} you house {[}how{]} big? -\textgreater{} how
+  big is your house?
+\end{itemize}
+
+\hypertarget{determiners}{%
+\subsection{determiners}\label{determiners}}
+
+\begin{itemize}
+\item
+  \textbf{个 -\textgreater{} measure word}
+\item
+  \textbf{都 -\textgreater{} quantifier}
+\item
+  \textbf{什么 -\textgreater{} interrogative}
+\item
+  \textbf{examples:}
+\item
+  这是什么？
+
+  \begin{itemize}
+  \tightlist
+  \item
+    this is \emph{what?}
+  \end{itemize}
+\item
+  他们是都不在家马？
+
+  \begin{itemize}
+  \tightlist
+  \item
+    they are \emph{all} not at home?
+  \end{itemize}
+\item
+  那是什么手机？
+
+  \begin{itemize}
+  \tightlist
+  \item
+    that is what phone?
+  \end{itemize}
+\item
+  你的是什么？
+
+  \begin{itemize}
+  \tightlist
+  \item
+    your{[}s{]} is what? (what is yours?)
+  \end{itemize}
+\item
+  你的名字是什么？
+
+  \begin{itemize}
+  \tightlist
+  \item
+    your name is what?
+  \end{itemize}
+\item
+  你叫什么？
+
+  \begin{itemize}
+  \tightlist
+  \item
+    you called what?
+  \end{itemize}
+\item
+  你叫什么名字？
+
+  \begin{itemize}
+  \tightlist
+  \item
+    you called what name?
+  \item
+    {[}S{]}{[}V{]} {[}det{]} {[}O{]}
+  \end{itemize}
+\item
+  你妈妈叫你什么名字？
+
+  \begin{itemize}
+  \tightlist
+  \item
+    your mother calls you what name?
+  \item
+    {[}S{]} {[}V{]} {[}IDO{]} {[}det{]} {[}DO{]}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{imperatives}{%
+\subsection{imperatives}\label{imperatives}}
+
+\begin{itemize}
+\tightlist
+\item
+  不要 / {[}bú yào{]} -\textgreater{} means ``don't'' {[}literally
+  ``don't want''{]}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    不要说英语 -\textgreater{} don't speak english
+  \end{itemize}
+\end{itemize}
+
+
+\end{document}

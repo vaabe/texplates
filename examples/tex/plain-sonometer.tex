@@ -1,0 +1,223 @@
+%%%% PANDOC DEFAULTS %%%%
+
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+
+\documentclass[
+]{article}
+
+
+
+\usepackage{lmodern}
+
+
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+
+  \usepackage{unicode-math}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+
+
+
+
+
+
+
+
+\fi
+
+
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+
+
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+
+\usepackage[dvipsnames]{xcolor}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+
+\urlstyle{same} % disable monospaced font for URLs
+
+
+
+
+
+
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+
+
+
+
+
+
+
+
+
+%%%% MAIN CONFIG %%%%
+
+% title
+
+% subtitle
+
+% author
+
+% date
+\date{}
+
+% colors
+\definecolor{MyBlue}{rgb}{0.0, 0.0, 0.75}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=MyBlue,
+	urlcolor=MyBlue
+}
+
+% urlstyle
+\urlstyle{tt}
+
+% fonts
+\usepackage{geometry}
+\renewcommand{\familydefault}{\sfdefault}
+
+\DeclareRobustCommand{\[}{\begin{equation}}
+\DeclareRobustCommand{\]}{\end{equation}}
+
+\begin{document}
+
+% page margins
+\newgeometry{
+	margin = .2cm, 
+	top = 2.0cm, 
+	bottom = 2.0cm, 
+	left = 2.0cm, 
+	right = 2.0cm
+}
+
+\renewcommand{\v}[1]{{\mathbf{#1}}}
+\newcommand{\dv}[1]{\dot{\mathbf{#1}}}
+\newcommand{\ddv}[1]{\ddot{\mathbf{#1}}}
+\newcommand{\hv}[1]{\hat{\mathbf{#1}}}
+\newcommand{\m}[1]{[ #1 ]}
+
+\newcommand{\bfit}[1]{\textbf{\textit{#1}}}
+\renewcommand{\t}[1]{\text{#1}}
+
+\renewcommand{\d}{\text{d}}
+\newcommand{\dd}[2]{\frac{\d #1}{\d #2}}
+\newcommand{\ddd}[2]{\frac{\d^2 #1}{\d #2^2}}
+\newcommand{\ddt}[1]{\frac{\d #1}{\d t}}
+\newcommand{\dddt}[1]{\frac{\d^2 #1}{\d t^2}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\grad}{\mathbf \nabla} 
+\renewcommand{\div}{\mathbf \nabla \cdot}
+\newcommand{\curl}{\mathbf \nabla \times}
+\newcommand{\lap}{\nabla^2}
+
+\newcommand{\eo}{\epsilon_0}
+\newcommand{\muo}{\mu_0}
+\newcommand{\Lag}{\mathcal L}
+\newcommand{\Ham}{\mathcal H}
+\newcommand{\degc}{^\circ \text C}
+\newcommand{\avo}{6.023 \cdot 10^{23}}
+\renewcommand{\P}{\text{P}}
+\newcommand{\p}{\text{p}}
+\newcommand{\E}{\text{E}}
+\newcommand{\e}[1]{\text{e}^{#1}}
+
+\newcommand{\bra}[1]{\langle #1 |}
+\newcommand{\ket}[1]{| #1 \rangle}
+\newcommand{\braket}[2]{\langle #1 | #2 \rangle}
+\newcommand{\adj}{^\dagger}
+\newcommand{\cj}{^*}
+\newcommand{\op}[1]{\hat{#1}}
+
+\newcommand{\bm}{\begin{bmatrix}}
+\newcommand{\ebm}{\end{bmatrix}}
+\newcommand{\bal}{\begin{aligned}}
+\newcommand{\eal}{\end{aligned}}
+\newcommand{\eq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\tl}[2]{\tag{#1} \label{#1}}
+
+
+
+%%%% TABLE OF CONTENTS %%%%
+
+
+\hfill
+
+\hypertarget{sonometer-lab-instructions}{%
+\section{Sonometer Lab Instructions}\label{sonometer-lab-instructions}}
+
+\texttt{mdpdf\ plain-sonometer.md}
+
+The point of the lab is to demonstrate how the normal mode frequency of
+a string depends on length, tension, and mass density. Read through the
+manual. You'll see there are four experiments in this lab:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Mode frequency versus \(n\)
+\item
+  First mode frequency versus length \(L\)
+\item
+  First mode frequency versus tension \(T\)
+\item
+  Mode frequencies and mass density \(\mu\)
+\end{enumerate}
+
+The experiments have been done for you by a member of the physics
+faculty. Your task is to write a lab report based on their data, which
+we've provided for you in the data folder. I've also posted an
+interactive version of the data on Airtable, which you may find is
+easier to work with---follow the link:
+
+\url{https://airtable.com/shrhqwPjVGr3WzBp7}
+
+If you're stuck on how to write the report, read over the report writing
+guidelines I've posted. It's not a rulebook, but it outlines some of the
+basic components your report should probably have.
+
+Report 1 is due on Thursday February 25th (not the 18th as stated
+earlier). If you have questions please let me know.
+
+
+\end{document}

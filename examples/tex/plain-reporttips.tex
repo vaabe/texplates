@@ -1,0 +1,345 @@
+%%%% PANDOC DEFAULTS %%%%
+
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+
+\documentclass[
+]{article}
+
+
+
+\usepackage{lmodern}
+
+
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+
+  \usepackage{unicode-math}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+
+
+
+
+
+
+
+
+\fi
+
+
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+
+
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+
+\usepackage[dvipsnames]{xcolor}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+
+\urlstyle{same} % disable monospaced font for URLs
+
+
+
+
+
+
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+
+
+
+
+
+
+
+
+
+%%%% MAIN CONFIG %%%%
+
+% title
+\title{\textbf{Lab Report Tips}}
+
+% subtitle
+
+% author
+
+% date
+\date{}
+
+% colors
+\definecolor{MyBlue}{rgb}{0.0, 0.0, 0.75}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=MyBlue,
+	urlcolor=MyBlue
+}
+
+% urlstyle
+\urlstyle{tt}
+
+% fonts
+\usepackage{geometry}
+\renewcommand{\familydefault}{\sfdefault}
+
+\DeclareRobustCommand{\[}{\begin{equation}}
+\DeclareRobustCommand{\]}{\end{equation}}
+
+\begin{document}
+
+% page margins
+\newgeometry{
+	margin = .2cm, 
+	top = 2.0cm, 
+	bottom = 2.0cm, 
+	left = 2.0cm, 
+	right = 2.0cm
+}
+
+\renewcommand{\v}[1]{{\mathbf{#1}}}
+\newcommand{\dv}[1]{\dot{\mathbf{#1}}}
+\newcommand{\ddv}[1]{\ddot{\mathbf{#1}}}
+\newcommand{\hv}[1]{\hat{\mathbf{#1}}}
+\newcommand{\m}[1]{[ #1 ]}
+
+\newcommand{\bfit}[1]{\textbf{\textit{#1}}}
+\renewcommand{\t}[1]{\text{#1}}
+
+\renewcommand{\d}{\text{d}}
+\newcommand{\dd}[2]{\frac{\d #1}{\d #2}}
+\newcommand{\ddd}[2]{\frac{\d^2 #1}{\d #2^2}}
+\newcommand{\ddt}[1]{\frac{\d #1}{\d t}}
+\newcommand{\dddt}[1]{\frac{\d^2 #1}{\d t^2}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\grad}{\mathbf \nabla} 
+\renewcommand{\div}{\mathbf \nabla \cdot}
+\newcommand{\curl}{\mathbf \nabla \times}
+\newcommand{\lap}{\nabla^2}
+
+\newcommand{\eo}{\epsilon_0}
+\newcommand{\muo}{\mu_0}
+\newcommand{\Lag}{\mathcal L}
+\newcommand{\Ham}{\mathcal H}
+\newcommand{\degc}{^\circ \text C}
+\newcommand{\avo}{6.023 \cdot 10^{23}}
+\renewcommand{\P}{\text{P}}
+\newcommand{\p}{\text{p}}
+\newcommand{\E}{\text{E}}
+\newcommand{\e}[1]{\text{e}^{#1}}
+
+\newcommand{\bra}[1]{\langle #1 |}
+\newcommand{\ket}[1]{| #1 \rangle}
+\newcommand{\braket}[2]{\langle #1 | #2 \rangle}
+\newcommand{\adj}{^\dagger}
+\newcommand{\cj}{^*}
+\newcommand{\op}[1]{\hat{#1}}
+
+\newcommand{\bm}{\begin{bmatrix}}
+\newcommand{\ebm}{\end{bmatrix}}
+\newcommand{\bal}{\begin{aligned}}
+\newcommand{\eal}{\end{aligned}}
+\newcommand{\eq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\tl}[2]{\tag{#1} \label{#1}}
+
+\maketitle
+
+
+%%%% TABLE OF CONTENTS %%%%
+
+
+\hfill
+
+\texttt{mdpdf\ plain-reporttips.md}
+
+\hypertarget{stuff-i-generally-look-for}{%
+\section{Stuff I Generally Look For}\label{stuff-i-generally-look-for}}
+
+Here's the (rough) rubric I use when grading your report:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Theory: (2 points)}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    A writeup of the principles and equations used in the experiment.
+  \item
+    Your writeup should demonstrate that you understand the concepts.
+    You should derive equations, show how they relate to each other,
+    etc.
+  \item
+    Try to do more than just regurgitate from the manual. The manuals
+    are an ok place to start but they're usually pretty light on detail.
+    You should do your own reading/research. This semester I'll also try
+    and post some resources for further reading.
+  \end{itemize}
+\item
+  \textbf{Experiment setup: (2 points)}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    A description of the experiment.
+  \item
+    The goals, the variables you measured, the instruments used, the
+    assumptions you made.
+  \item
+    Diagrams are good.
+  \end{itemize}
+\item
+  \textbf{Presentation of data: (1-2 points)}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Clear presentation of data.
+  \item
+    This includes tables, graphs, equations, etc (as applicable; not all
+    experiments require all of these).
+  \item
+    Please label/signpost your content! Otherwise I won't know what I'm
+    looking at. Perhaps contrary to popular belief, I am not an
+    omnipotent God of The Labs. Although I've (probably) read the lab
+    manual, by the time I get to grading your report I'll have basically
+    forgotten everything about it. If you put a table in your report
+    without labeling what it contains and what experiment it corresponds
+    to, my initial reaction will probably be one of bafflement, not
+    understanding.
+  \end{itemize}
+\item
+  \textbf{Analysis, discussion: (2-3 points)}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    A discussion of your results. You should explain what they show, how
+    they demonstrate the theory, etc.
+  \item
+    If applicable, compare your experimental values to the theoretical
+    ones. Why are they different?
+  \item
+    You should answer the questions in the manual (marked in bold). It's
+    up to you whether you integrate your answers into your general
+    discussion, or if you answer them separately.
+  \end{itemize}
+\item
+  \textbf{Sources of error: (2 points)}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    A discussion of factors that may have caused
+    impresicions/inaccuracies in the results.
+  \item
+    Your sources of error should be relevant. Don't just randomly list
+    ``ad hoc'' sources of error. You should explain why a particular
+    source of error might account for the \emph{specific} discrepancies
+    you see in the data.
+  \item
+    It's also worth nothing that sometimes the equipment we use in these
+    labs is a bit old and terrible. If you can't figure out why some
+    results are off, it may just be that the equipment was bad. Ask me
+    if you're unsure.
+  \item
+    Feel free to critique the experiment design and suggest
+    improvements.
+  \end{itemize}
+\item
+  \textbf{Bibliography/references:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    I won't grade this, but if you use external sources (as indeed you
+    should) you should state them.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{dont-worry-too-much-about}{%
+\section{Don't Worry Too Much
+About\ldots{}}\label{dont-worry-too-much-about}}
+
+\begin{itemize}
+\item
+  \textbf{Formatting:} beyond typing your report, you can use whatever
+  style/format you want. Aesthetic frippery is not necessary. Simple and
+  functional reports are completely fine.
+\item
+  \textbf{Grammar and writing style:} as long as I can basically follow
+  what you're saying, we won't have trouble.
+\end{itemize}
+
+\hypertarget{error-analysis}{%
+\section{Error Analysis}\label{error-analysis}}
+
+Refer to
+\href{https://physics.nyu.edu/~physlab/Lab_Main/Error\%20Analysis\%20for\%20premed\%20August\%2016,\%202010.pdf}{NYU's
+guide on error analysis}.
+
+\begin{itemize}
+\item
+  In general you should state the numerical uncertainties in
+  experimental/measured values.
+\item
+  If you have an array of data (e.g.~if you have many measurements of a
+  single variable or outcome) it's useful to give summary statistics
+  (mean, standard deviation, etc).
+\item
+  Sometimes you will have to multiply experimental values together. When
+  you do this, you may find it quite cumbersome to compute the
+  uncertainty in the final value (the uncertainty becomes a quadratic
+  function---see the error analysis guide). If you have a whole table of
+  data it'll take you a very long time to do all these calculations by
+  hand. I urge you to use software to do these calculations (for your
+  own sake). If you don't know how, feel free to ask me. I will give you
+  some code that helps speed things up for you. I want you to spend more
+  time on analysis and building understanding than on repeating menial
+  calculations!
+\end{itemize}
+
+\hypertarget{grading-errors}{%
+\section{Grading Errors}\label{grading-errors}}
+
+If you think I've graded something wrong or unfairly, please let me
+know. I do miss things occasionally so I'm happy to resolve any issues
+you have.
+
+
+\end{document}

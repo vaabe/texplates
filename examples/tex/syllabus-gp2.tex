@@ -1,0 +1,337 @@
+%%%% PANDOC DEFAULTS %%%%
+
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+
+\documentclass[
+]{article}
+
+
+
+\usepackage{lmodern}
+
+
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+
+  \usepackage{unicode-math}
+
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+
+
+
+
+
+
+
+
+
+\fi
+
+
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+
+
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+
+\usepackage[dvipsnames]{xcolor}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+
+\urlstyle{same} % disable monospaced font for URLs
+
+
+
+
+
+
+
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+
+
+
+
+
+
+
+
+
+%%%% MAIN CONFIG %%%%
+
+% title
+\title{\textbf{Syllabus: GP2 Lab}}
+
+% subtitle
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Spring 2021}
+
+%% semester
+%%\subtitle{}
+
+%% author
+%
+% date
+\date{}
+
+% colors
+\definecolor{MyBlue}{rgb}{0.0, 0.0, 0.75}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=MyBlue,
+	urlcolor=MyBlue
+}
+
+% urlstyle
+\urlstyle{tt}
+
+\usepackage{geometry}
+\renewcommand{\familydefault}{\sfdefault}
+
+\DeclareRobustCommand{\[}{\begin{equation}}
+\DeclareRobustCommand{\]}{\end{equation}}
+
+\begin{document}
+
+% page margins
+\newgeometry{
+	margin=.2cm, 
+	top=2.0cm, 
+	bottom=2.0cm, 
+	left=1.6cm, 
+	right=1.6cm
+}
+
+% newcommands
+\renewcommand{\v}[1]{{\mathbf{#1}}}
+\newcommand{\dv}[1]{\dot{\mathbf{#1}}}
+\newcommand{\ddv}[1]{\ddot{\mathbf{#1}}}
+\newcommand{\hv}[1]{\hat{\mathbf{#1}}}
+\newcommand{\m}[1]{[ #1 ]}
+
+\newcommand{\bfit}[1]{\textbf{\textit{#1}}}
+\renewcommand{\t}[1]{\text{#1}}
+
+\renewcommand{\d}{\text{d}}
+\newcommand{\dd}[2]{\frac{\d #1}{\d #2}}
+\newcommand{\ddd}[2]{\frac{\d^2 #1}{\d #2^2}}
+\newcommand{\ddt}[1]{\frac{\d #1}{\d t}}
+\newcommand{\dddt}[1]{\frac{\d^2 #1}{\d t^2}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdd}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\grad}{\mathbf \nabla} 
+\renewcommand{\div}{\mathbf \nabla \cdot}
+\newcommand{\curl}{\mathbf \nabla \times}
+\newcommand{\lap}{\nabla^2}
+
+\newcommand{\eo}{\epsilon_0}
+\newcommand{\muo}{\mu_0}
+\newcommand{\Lag}{\mathcal L}
+\newcommand{\Ham}{\mathcal H}
+\newcommand{\degc}{^\circ \text C}
+\newcommand{\avo}{6.023 \cdot 10^{23}}
+\renewcommand{\P}{\text{P}}
+\newcommand{\p}{\text{p}}
+\newcommand{\E}{\text{E}}
+\newcommand{\e}[1]{\text{e}^{#1}}
+
+\newcommand{\bra}[1]{\langle #1 |}
+\newcommand{\ket}[1]{| #1 \rangle}
+\newcommand{\braket}[2]{\langle #1 | #2 \rangle}
+\newcommand{\adj}{^\dagger}
+\newcommand{\cj}{^*}
+\newcommand{\op}[1]{\hat{#1}}
+
+\newcommand{\bm}{\begin{bmatrix}}
+\newcommand{\ebm}{\end{bmatrix}}
+\newcommand{\bal}{\begin{aligned}}
+\newcommand{\eal}{\end{aligned}}
+\newcommand{\eq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\tl}[2]{\tag{#1} \label{#1}}
+
+\maketitle
+%
+%% table of contents
+%%
+%\hfill
+
+\texttt{mdpdf\ syllabus-gp2.md\ -t\ sy}
+
+\hypertarget{info}{%
+\section{Info}\label{info}}
+
+\begin{itemize}
+\item
+  \textbf{Contact:} \href{mailto:vabe@nyu.edu}{\nolinkurl{vabe@nyu.edu}}
+\item
+  \textbf{Room:} Meyer 222
+\item
+  \textbf{Class hours:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Sec 07: Mon 1.30pm-3.50pm
+  \item
+    Sec 11: Mon 4.00pm-6.20pm
+  \item
+    Sec 04: Thu 11.00am-1.20pm
+  \item
+    Sec 08: Thu 1.30pm-3.50pm
+  \end{itemize}
+\item
+  \textbf{Office hours:} \url{https://nyu.zoom.us/j/91270104640}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Tue/Wed/Fri 4.00pm-5.00pm ET (or by appointment---please ask)
+  \end{itemize}
+\item
+  \textbf{Github:} \url{https://github.com/vaabe/phys12}
+\end{itemize}
+
+\hypertarget{description}{%
+\section{Description}\label{description}}
+
+This laboratory course is intended to help you understand the basic
+principles of waves, electromagnetism, and optics. There are 10 labs in
+total:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\endhead
+Feb 11 & 1 - Sonometer \\
+Feb 18 & \\
+Feb 25 & 2 - Resonance Tube \\
+Mar 4 & 3 - Electrostatics \\
+Mar 11 & 4 - Electric Field Mapping \\
+Mar 18 & \\
+Mar 25 & 5 - Voltage, Current, Resistance \\
+Apr 1 & 6 - Charge to Mass Ratio of Electron \\
+Apr 8 & 7 - Current Balance \\
+Apr 15 & 8 - Induction \\
+Apr 22 & \\
+Apr 29 & 9 - Snell's Law \\
+May 4 & 10 - Eye \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{in-person-vs-remote}{%
+\section{In-Person vs Remote}\label{in-person-vs-remote}}
+
+You choose at the beginning of the semester whether you're going to take
+this course in-person or remotely. The department's policy is that you
+should stick to your choice throughout the semester (to the extent that
+you can; obviously we'll make reasonable exceptions due to covid).
+
+\hypertarget{in-person-labs}{%
+\section{In-Person Labs}\label{in-person-labs}}
+
+If you're taking the course in-person, you will perform the experiments
+individually. You should read the manual before coming to class so you
+know what to expect. {[}At the very least you should skim over the
+theory. E\&M is non-trivial and it'll be easier if you actually
+understand what you're observing{]}.
+
+\hypertarget{remote-labs}{%
+\section{Remote Labs}\label{remote-labs}}
+
+Each week we'll post the relevant lab materials (data, videos,
+simulations, etc) in the
+\href{https://drive.google.com/drive/folders/1onTfWs8QGWsOP_3PFigj7CvMpJUr_Kn4?usp=sharing}{google
+drive folder}. You should base your report on the data we provide. There
+will be two or three zoom office hours each week. These meetings aren't
+mandatory but I encourage you to show up and ask questions. Asides from
+that you'll be working fairly independently, and it's your
+responsibility to manage your time and keep up with the schedule.
+
+\hypertarget{assignments}{%
+\section{Assignments}\label{assignments}}
+
+Each week you will write a report on the experiment you performed that
+week. I will mark your submission out of 10:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Theory: /2}
+\item
+  \textbf{Experiment Setup: /2}
+\item
+  \textbf{Results: /6} (split into three subsections)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Presentation of data: /2}
+  \item
+    \textbf{Analysis of results, discussion questions: /2}
+  \item
+    \textbf{Sources of error: /2}
+  \end{itemize}
+\end{itemize}
+
+I've also posted a guide with more detailed advice on writing reports.
+Give it a read if you're stumped for ideas.
+
+\hypertarget{deadlines}{%
+\section{Deadlines}\label{deadlines}}
+
+Reports are due at the beginning of the next scheduled session
+(i.e.~Thursdays). Please be reasonable.
+
+\hypertarget{resubmission}{%
+\section{Resubmission}\label{resubmission}}
+
+Throughout the semester I'll allow you to resubmit two reports for a
+better grade. Email me.
+
+
+\end{document}

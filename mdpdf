@@ -10,10 +10,11 @@ templates=( \
 options=(\
 	"-z 	add 中文 support (use xelatex, set CJKfont, etc)"\
 	"-c	force add table of contents (--toc)"\
+	"-x	save .tex file (make ./tex/ directory)"\
 	)
 
 usage_message() {
-	echo -e "\nUsage: mdpdf <mdfile> [-t template] [-z] [-c]\n"
+	echo -e "\nUsage: mdpdf <mdfile> [-t template] [options]\n"
 	echo "templates:"
 	for i in "${templates[@]}"; do
 		echo "      $i"
@@ -30,6 +31,7 @@ if [ "$#" == 0 ] ; then usage_message ; fi
 
 infile=$1
 mdfile=""
+
 if [[ $infile == *".md"* ]]; then
 	mdfile=$infile
 elif [[ $infile == *. ]]; then
@@ -37,17 +39,22 @@ elif [[ $infile == *. ]]; then
 else
 	mdfile="${infile}.md"
 fi
+
 if [[ ! -f $mdfile ]]; then
 	echo "File $mdfile doesn't exist, twat"
 	exit 1
 fi
+
 shift
 
-outfile="${mdfile::-2}pdf"
+pdffile="${mdfile::-2}pdf"
+texfile="${mdfile::-2}tex"
 template=""
 chinese=0
-toc=""
-while getopts "h:t:zc" opt; do
+extensions=""
+convert="${mdfile} -o ${pdffile}"
+
+while getopts "h:t:zcx" opt; do
 	case ${opt} in 
 		h)
 			usage_message
@@ -56,11 +63,14 @@ while getopts "h:t:zc" opt; do
 			template=$OPTARG
 			;;
 		z)
-			#chinese="--pdf-engine=xelatex -V CJKmainfont='Source Han Sans CN'"
 			chinese=1
 			;;
 		c)
-			toc="--toc"
+			extensions+=" --toc"
+			;;
+		x)
+			mkdir -p ./tex/
+			convert="${mdfile} -o ./tex/${texfile}"
 			;;
 		\?)	
 			echo -e "\nYou twat."
@@ -69,35 +79,35 @@ while getopts "h:t:zc" opt; do
 	esac
 done
 
-extensions=""
 templatesrc=""
+
 case $template in
 	pl|plain)
-		extensions="--from markdown+pipe_tables"
+		extensions+=" --from markdown+pipe_tables"
 		templatesrc="plain.latex"
 		shift
 		shift
 		;;
 	gr|gradecomments)
-		extensions="--from markdown+pipe_tables"
+		extensions+=" --from markdown+pipe_tables"
 		templatesrc="gradecomments.latex"
 		shift
 		shift
 		;;
 	la|labmanual)
-		extensions="--toc --from markdown+pipe_tables"
+		extensions+=" --toc --from markdown+pipe_tables"
 		templatesrc="labmanual.latex"
 		shift
 		shift
 		;;
 	sy|syllabus)
-		extensions="--from markdown+pipe_tables"
+		extensions+=" --from markdown+pipe_tables"
 		templatesrc="syllabus.latex"
 		shift
 		shift
 		;;
 	*)
-		extensions="--from markdown+pipe_tables"
+		extensions+=" --from markdown+pipe_tables"
 		templatesrc="plain.latex"
 		shift
 		shift
@@ -105,14 +115,16 @@ case $template in
 esac
 
 if [[ $chinese -eq 1 ]]; then
-	echo "Converting ${mdfile}... Template: ${templatesrc} (with 中文)..."
-	pandoc $toc --pdf-engine=xelatex -V CJKmainfont='Source Han Sans CN' \
-		$extensions $mdfile -o $outfile \
+	echo "Converting ${mdfile}"
+	echo "Template: ${templatesrc}"
+	echo "(with 中文)"
+	pandoc --pdf-engine=xelatex -V CJKmainfont='Source Han Sans CN' \
+		$extensions $convert \
 		--template ${HOME}/bin/latex/$templatesrc
 else
-	echo  "Converting ${mdfile}... Template: ${templatesrc}..."
-	pandoc $toc $extensions $mdfile -o $outfile \
-		--template ${HOME}/bin/latex/$templatesrc
+	echo "Converting ${mdfile}"
+	echo "Template: ${templatesrc}"
+	pandoc $extensions $convert --template ${HOME}/bin/latex/$templatesrc
 fi
 
 echo "Done."
