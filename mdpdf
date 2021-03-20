@@ -8,9 +8,9 @@ templates=( \
 	)
 
 options=(\
-	"-z 	add 中文 support (use xelatex, set CJKfont, etc)"\
-	"-c	force add table of contents (--toc)"\
-	"-x	save .tex file (make ./tex/ directory)"\
+	"-z 	render 中文 (use xelatex, set CJKfont, etc)"\
+	"-c	add table of contents"\
+	"-x	save .tex file (create ./tex/ directory)"\
 	)
 
 usage_message() {
