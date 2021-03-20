@@ -9,7 +9,7 @@ templates=( \
 
 options=(\
 	"-z 	render 中文 (use xelatex, set CJKfont, etc)"\
-	"-c	add toc"\
+	"-c	add table of contents"\
 	"-x	save .tex file (create ./tex/ directory)"\
 	)
 
