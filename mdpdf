@@ -8,19 +8,20 @@ templates=( \
 	)
 
 options=(\
+	"-t	template (below)"\
 	"-z 	render 中文 (use xelatex, set CJKfont, etc)"\
 	"-c	add table of contents"\
 	"-x	save .tex file (create ./tex/ directory)"\
 	)
 
 usage_message() {
-	echo -e "\nUsage: mdpdf <mdfile> [-t template] [options]\n"
-	echo "templates:"
-	for i in "${templates[@]}"; do
-		echo "      $i"
-	done
+	echo -e "\nUsage: mdpdf <mdfile> [options]"
 	echo -e "\noptions:"
 	for i in "${options[@]}"; do
+		echo "      $i"
+	done
+	echo -e "\ntemplates:"
+	for i in "${templates[@]}"; do
 		echo "      $i"
 	done
 	echo ""
@@ -115,14 +116,14 @@ case $template in
 esac
 
 if [[ $chinese -eq 1 ]]; then
-	echo "Converting ${mdfile}"
+	echo "Converting ${mdfile} to pdf..."
 	echo "Template: ${templatesrc}"
 	echo "(with 中文)"
 	pandoc --pdf-engine=xelatex -V CJKmainfont='Source Han Sans CN' \
 		$extensions $convert \
 		--template ${HOME}/bin/latex/$templatesrc
 else
-	echo "Converting ${mdfile}"
+	echo "Converting ${mdfile} to pdf..."
 	echo "Template: ${templatesrc}"
 	pandoc $extensions $convert --template ${HOME}/bin/latex/$templatesrc
 fi

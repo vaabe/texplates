@@ -1,4 +1,10 @@
-Usage: mdpdf <mdfile> [-t template] [options]
+Usage: mdpdf <mdfile> [options]
+
+options:
+	-t		template (below)
+	-z		render 中文 (use xelatex, set CJKfont, etc)
+	-c 		add table of contents 
+	-x 		save .tex file (create ./tex/ directory)
 
 templates: 
 	pl|plain (default)
@@ -7,7 +13,3 @@ templates:
 	sy|syllabus
 	la|labmanual
 
-options:
-	-z		render 中文 (use xelatex, set CJKfont, etc)
-	-c 		add table of contents 
-	-x 		save .tex file (create ./tex/ directory)
