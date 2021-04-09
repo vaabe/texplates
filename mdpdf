@@ -8,7 +8,6 @@ templates=( \
 	)
 
 options=(\
-	"-t	template (below)"\
 	"-z 	render 中文 (use xelatex, set CJKfont, etc)"\
 	"-c	add table of contents"\
 	"-x	save .tex file (create ./tex/ directory)"\
@@ -16,12 +15,12 @@ options=(\
 
 usage_message() {
 	echo -e "\nUsage: mdpdf <mdfile> [options]"
-	echo -e "\noptions:"
-	for i in "${options[@]}"; do
-		echo "      $i"
-	done
 	echo -e "\ntemplates:"
 	for i in "${templates[@]}"; do
+		echo "      $i"
+	done
+	echo -e "\noptions:"
+	for i in "${options[@]}"; do
 		echo "      $i"
 	done
 	echo ""
